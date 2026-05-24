@@ -6,7 +6,7 @@
 > in YAML — not Python.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Status: v1.1 — production-tested](https://img.shields.io/badge/status-v1.1%20%E2%80%94%20production--tested-brightgreen)](#version-history)
+![Status: v1.1 — production-tested](https://img.shields.io/badge/status-v1.1%20%E2%80%94%20production--tested-brightgreen)
 [![Python 3.11](https://img.shields.io/badge/python-3.11-blue.svg)](Dockerfile)
 [![LangGraph](https://img.shields.io/badge/built%20with-LangGraph-1f425f.svg)](https://langchain-ai.github.io/langgraph/)
 
@@ -267,64 +267,6 @@ Before pointing real customers at this, work through the short list below
 - [SECURITY.md](SECURITY.md) — reporting vulnerabilities
 
 ---
-
-<details>
-<summary><b>Repository layout</b></summary>
-
-```
-.
-├── src/                       # The worker
-│   ├── worker.py               # Polling loop + 5 scheduled jobs
-│   ├── agent.py                # LangGraph ReAct graph + dynamic prompt
-│   ├── database_pg.py          # PostgreSQL data layer
-│   ├── config.py               # Env + persona + prompt loader
-│   ├── i18n.py                 # Babel currency / date formatting
-│   ├── timezone_utils.py       # now_local / today_local
-│   ├── followup_messages.py    # Morning-followup templates
-│   ├── ptp_reminder.py         # PTP campaign orchestrator
-│   ├── guardrails.py           # Injection + on-topic validation
-│   ├── payment_checker.py      # Payment-status verification
-│   ├── image_analyzer.py       # Vision LLM for payment proofs
-│   └── messaging/              # Pluggable provider adapters
-│       ├── base.py, mimin.py, twilio.py, telegram.py, null.py
-│       └── __init__.py         # Factory: MESSAGING_PROVIDER=...
-│
-├── prompts/en/                # Default English prompt bundle
-│   ├── system_prompt.md, followups.yaml, guardrails.yaml,
-│   ├── strategies.yaml, reminders.yaml
-├── config/
-│   └── persona.example.yaml   # Default persona; copy to persona.yaml
-│
-├── examples/
-│   └── receiver/              # Minimal FastAPI reference receiver
-│
-├── docs/                      # QUICKSTART, ARCHITECTURE, ADAPTING, …
-├── scripts/                   # Synthetic data seeder + a few utilities
-├── tests/                     # Smoke tests (pure-function, no DB or LLM)
-│
-├── Dockerfile                 # Worker
-├── docker-compose.yml         # postgres + receiver + worker (one-cmd dev)
-├── requirements.txt
-├── .env.example
-└── LICENSE                    # MIT
-```
-
-Built with Python 3.11, LangGraph + LangChain, PostgreSQL, OpenRouter,
-Babel, and Docker.
-
-</details>
-
-<details>
-<summary><a id="version-history"></a><b>Version history</b></summary>
-
-| Version | Theme         | What it shipped |
-|---------|---------------|---|
-| v0.1    | Sanitize      | PII removed, MIT license, public-repo essentials |
-| v0.2    | Parameterize  | Locale / timezone / currency / persona / business rules driven by config; English-first prompts; YAML prompt bundles |
-| v1.0    | Adapt         | Pluggable messaging adapters (Mimin + Twilio + Telegram + Null), reference receiver service, docker-compose stack, full docs |
-| v1.1    | Polish        | Public-release polish, renamed to **collectkit** |
-
-</details>
 
 ## Contributing
 
