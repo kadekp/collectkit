@@ -1,0 +1,13 @@
+langgraph>=1.0.2
+langgraph-checkpoint-postgres>=2.0.0
+langchain-openai>=0.2.0
+langchain-core>=0.3.0
+langsmith>=0.1.0
+langsmith-fetch>=0.3.1
+pydantic>=2.5.0
+python-dotenv>=1.0.0
+psycopg[binary,pool]>=3.1.0
+requests>=2.31.0
+newrelic>=9.0.0
+babel>=2.14.0
+pyyaml>=6.0.1

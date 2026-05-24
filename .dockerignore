@@ -1,0 +1,14 @@
+.git
+.env
+.env.*
+__pycache__
+*.pyc
+logs/
+analytics/
+scripts/
+tests/
+docs/
+*.md
+railway.toml
+Procfile
+.claude/

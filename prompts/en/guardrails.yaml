@@ -1,0 +1,58 @@
+# Guardrail configuration.
+# Used by src.guardrails.
+
+# Regex patterns that trigger a prompt-injection guardrail.
+# All patterns are matched case-insensitively (use (?i) inside the regex
+# or rely on the default re.IGNORECASE flag).
+injection_patterns:
+  - "(?i)ignore\\s+(all\\s+)?(previous|above|prior)\\s+(instructions?|prompts?|rules?)"
+  - "(?i)ignore\\s+(all\\s+)?(previous|above|prior)\\s+in[st]{1,2}ru[ct]{1,2}ions?"
+  - "(?i)disregard\\s+(all\\s+)?(previous|above|prior)"
+  - "(?i)forget\\s+(all\\s+)?(previous|everything|your)"
+  - "(?i)you\\s+are\\s+now\\s+(a|an|the)"
+  - "(?i)pretend\\s+(to\\s+be|you\\s+are)"
+  - "(?i)act\\s+as\\s+(if|a|an)"
+  - "(?i)new\\s+instructions?\\s*:"
+  - "(?i)^system\\s*:"
+  - "(?i)^\\[system\\]"
+  - "(?i)^\\[inst\\]"
+  - "(?i)override\\s+(your|the|all)"
+  - "(?i)bypass\\s+(your|the|all)"
+  - "(?i)jailbreak"
+  - "(?i)dan\\s+mode"
+  - "(?i)developer\\s+mode"
+  - "(?i)ignore\\s+safety"
+  - "(?i)unlimited\\s+mode"
+
+# Substrings (case-insensitive) that mark a reply as "on-topic".
+# If a reply longer than `min_check_length` contains none of these, the
+# output guardrail fails. Replace with terms relevant to your product.
+on_topic_keywords:
+  - billing
+  - bill
+  - payment
+  - pay
+  - paid
+  - balance
+  - due
+  - overdue
+  - invoice
+  - receipt
+  - account
+  - transfer
+  - bank
+  - credit card
+  - debit
+  - refund
+  - link
+  - promise
+  - ptp
+  - support
+  - help
+  - sorry
+  - thanks
+  - thank you
+
+# Replies shorter than this character count skip the on-topic check
+# (greetings, simple acknowledgments).
+min_check_length: 150

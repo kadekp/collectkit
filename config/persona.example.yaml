@@ -1,0 +1,37 @@
+# Persona configuration
+# -----------------------------------------------------------
+# Copy this file to `config/persona.yaml` (gitignored) and edit
+# to match your business. Values are injected into the system
+# prompt at runtime as `{bot_name}`, `{company_name}`, etc.
+# -----------------------------------------------------------
+
+# Bot identity
+bot_name: Maya
+company_name: Acme Corp
+product_name: Acme Pay
+support_handoff_channel: "our human support team"
+
+# Business rules
+# These are referenced by the system prompt as `{rule_<key>}`
+business_rules:
+  # Maximum loan amount in the smallest unit of currency (e.g. cents).
+  max_loan_amount: 50000
+  # Day of the month the bill is due (1-31). Leave null for variable due dates.
+  due_date_day_of_month: 7
+  # Accepted payment methods (free text, shown to customer)
+  payment_methods:
+    - QRIS
+    - GoPay
+    - DANA
+    - Bank transfer (VA)
+  # Whether the product supports partial payments
+  allows_partial_payment: false
+  # Whether customers can request a due-date extension
+  allows_extension: false
+  # Description of late-payment consequences (e.g. credit bureau reporting)
+  late_fee_policy: "Late payments may be reported to a credit bureau."
+
+# Tone defaults (used by followups / strategies if a tier omits its own tone)
+tone:
+  default: "friendly, concise, respectful"
+  late: "firm but respectful"

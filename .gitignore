@@ -1,0 +1,66 @@
+# ============================================================
+# .gitignore
+# ============================================================
+
+# Secrets / local environment
+.env
+.env.local
+.env.*.local
+*.bak
+.env.bak
+
+# Local Claude Code / agent instructions
+claude.md
+CLAUDE.md
+.claude/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+test_results*.txt
+test_results*.csv
+tests/results/
+
+# Databases & dumps
+*.db
+*.db-shm
+*.db-wal
+*.dump
+*.sql.gz
+db.zip
+db/
+
+# Customer data — never commit any of this
+data/
+logs/
+analytics/
+*.csv
+# Whitelist: synthetic test fixtures only
+!tests/fixtures/*.csv
+!examples/*/tests/fixtures/*.csv
+
+# Tooling / benchmarks
+.benchmarks/
+.deepeval/
+.newrelic.ini
+newrelic_agent.log

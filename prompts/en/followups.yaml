@@ -1,0 +1,58 @@
+# Morning follow-up message templates.
+# Used by src.followup_messages.get_followup_message(...).
+#
+# Templates may use the following placeholders:
+#   {first_name}    First name extracted from customer name (or "there" fallback)
+#   {customer_name} Full customer name
+#   {days_late}     Number of days the bill is late (> 0)
+#   {amount}        Outstanding amount, formatted with the configured currency
+#   {bot_name}      Bot name from persona.yaml
+#   {company_name}  Company name from persona.yaml
+#   {product_name}  Product name from persona.yaml
+#
+# Tiers are matched top-to-bottom. The first tier whose `max_days_late`
+# is >= the borrower's days_late wins. The last tier should have
+# `max_days_late: null` to act as the catch-all.
+
+default_first_name: "there"
+
+# Sent by the worker when a borrower's payment is confirmed (manual check
+# or scheduled task). Placeholders: {bot_name}, {company_name},
+# {product_name}.
+payment_confirmed: |
+  Hi! We've confirmed your payment — thank you! 🎉
+  Your {product_name} account is active again.
+
+tiers:
+  - max_days_late: 3
+    label: "gentle"
+    message: |
+      Hi {first_name}, this is {bot_name} from {company_name}. Just a friendly
+      reminder about your outstanding {product_name} bill of {amount}. When do
+      you think you'll be able to pay?
+
+  - max_days_late: 7
+    label: "concerned"
+    message: |
+      Hi {first_name}, your {product_name} bill is now {days_late} days
+      overdue. To avoid late-payment fees and credit impact, please let me
+      know when you can pay.
+
+  - max_days_late: 14
+    label: "urgent"
+    message: |
+      Hi {first_name}, your bill of {amount} is now {days_late} days overdue.
+      This may start affecting your credit record. When can you make the
+      payment?
+
+  - max_days_late: 30
+    label: "serious"
+    message: |
+      Hi {first_name}, your {product_name} bill is now {days_late} days
+      overdue. We need a definite payment date — when can you pay?
+
+  - max_days_late: null
+    label: "formal"
+    message: |
+      Hi {first_name}, your bill is now {days_late} days overdue. Please let
+      {bot_name} know when you can pay.

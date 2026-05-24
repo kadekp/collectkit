@@ -1,0 +1,51 @@
+# PTP (Promise to Pay) reminder templates.
+# Used by src.ptp_reminder.
+#
+# Each reminder type maps to:
+#   campaign_template: name of the WhatsApp campaign template (must exist
+#                      in your messaging provider's template registry)
+#   chat_message:      free-form message logged to chat_history for audit
+#
+# Placeholders available in chat_message:
+#   {name}          customer name
+#   {amount}        outstanding amount, locale-formatted
+#   {amount_plain}  outstanding amount without currency symbol
+#   {promise_date}  the PTP date (locale-formatted)
+#   {payment_link}  payment URL
+#   {bot_name}, {company_name}, {product_name}
+
+due_today:
+  campaign_template: "bot_ptp_due"
+  chat_message: |
+    Hi {name},
+
+    Friendly reminder: your payment commitment of {amount} is due today.
+
+    You can pay using this link:
+    {payment_link}
+
+    Thanks for staying on top of this!
+
+dminus_1:
+  campaign_template: "bot_ptp_dminus_1"
+  chat_message: |
+    Hi {name},
+
+    Heads up — tomorrow is your committed payment date for {amount}.
+
+    Payment link: {payment_link}
+
+    Thank you.
+
+missed:
+  campaign_template: "bot_ptp_missed"
+  chat_message: |
+    Hi {name},
+
+    Your {product_name} payment commitment of {amount_plain} due on {promise_date} has been missed.
+
+    Please complete the payment using this link to avoid further follow-up:
+    {payment_link}
+
+    If you've already paid, please ignore this message.
+    Thank you.

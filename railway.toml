@@ -1,0 +1,8 @@
+[build]
+builder = "nixpacks"
+
+[deploy]
+startCommand = "newrelic-admin run-program python -m src.worker"
+restartPolicyType = "always"
+healthcheckPath = "/live"
+healthcheckTimeout = 30
